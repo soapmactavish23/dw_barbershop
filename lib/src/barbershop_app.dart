@@ -1,4 +1,6 @@
 import 'package:asyncstate/asyncstate.dart';
+import 'package:dw_barbershop/src/core/ui/barbershop_theme.dart';
+import 'package:dw_barbershop/src/features/auth/login/login_page.dart';
 import 'package:dw_barbershop/src/features/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +12,10 @@ class BarbershopApp extends StatelessWidget {
     return MaterialApp(
       title: 'DW Barbershop',
       navigatorObservers: [AsyncState.observer],
+      theme: BarbershopTheme.themeData,
       routes: {
         '/': (_) => const SplashPage(),
+        '/auth/login': (_) => const LoginPage(),
       },
     );
   }
