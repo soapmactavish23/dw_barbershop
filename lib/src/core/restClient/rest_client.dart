@@ -5,7 +5,7 @@ final class RestClient extends DioForNative {
   // TODO: MODIFICAR O IP
   RestClient()
       : super(BaseOptions(
-          baseUrl: 'http://192.168.141.166:8080',
+          baseUrl: 'http://192.168.100.42:8080',
           connectTimeout: const Duration(seconds: 10),
           receiveTimeout: const Duration(seconds: 60),
         )) {
