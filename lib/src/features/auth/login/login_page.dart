@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
       body: DecoratedBox(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/bg.jpg"),
+            image: AssetImage(ImageConstants.backgroundChair),
             opacity: 0.2,
             fit: BoxFit.cover,
           ),
@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset("assets/images/imgLogo.png"),
+                        Image.asset(ImageConstants.imageLogo),
                         const SizedBox(
                           height: 24,
                         ),
