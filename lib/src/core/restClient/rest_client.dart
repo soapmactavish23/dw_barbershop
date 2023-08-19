@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 
-class RestClient extends DioForNative {
+final class RestClient extends DioForNative {
   // TODO: MODIFICAR O IP
   RestClient()
       : super(BaseOptions(
