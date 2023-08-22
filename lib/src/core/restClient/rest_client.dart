@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:dw_barbershop/src/core/restClient/interceptors/auth_interceptor.dart';
 
 final class RestClient extends DioForNative {
   // TODO: MODIFICAR O IP
@@ -11,6 +12,7 @@ final class RestClient extends DioForNative {
         )) {
     interceptors.addAll([
       LogInterceptor(requestBody: true, responseBody: true),
+      AuthInterceptor(),
     ]);
   }
 
