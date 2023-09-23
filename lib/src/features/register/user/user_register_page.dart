@@ -1,6 +1,6 @@
 import 'package:dw_barbershop/src/core/ui/helper/form_helper.dart';
 import 'package:dw_barbershop/src/core/ui/helper/messages.dart';
-import 'package:dw_barbershop/src/features/register/user_register_vm.dart';
+import 'package:dw_barbershop/src/features/register/user/user_register_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';

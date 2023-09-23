@@ -1,7 +1,7 @@
 import 'package:asyncstate/asyncstate.dart';
 import 'package:dw_barbershop/src/core/fp/either.dart';
 import 'package:dw_barbershop/src/core/providers/application_providers.dart';
-import 'package:dw_barbershop/src/features/register/user_register_providers.dart';
+import 'package:dw_barbershop/src/features/register/user/user_register_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'user_register_vm.g.dart';
