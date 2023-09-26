@@ -34,6 +34,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    var statePage = SplashState.login;
     ref.listen(splashVmProvider, (_, state) {
       state.whenOrNull(error: (error, stackTrace) {
         log('Erro ao validar login', error: error, stackTrace: stackTrace);
@@ -43,17 +44,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
           (route) => false,
         );
       }, data: (data) {
-        switch (data) {
-          case SplashState.loggedADM:
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil('/home/adm', (route) => false);
-          case SplashState.loggedEmployee:
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil('/home/employee', (route) => false);
-          case _:
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil('/home/login', (route) => false);
-        }
+        statePage = data;
       });
     });
 
@@ -94,6 +85,19 @@ class _SplashPageState extends ConsumerState<SplashPage> {
             },
             child: AnimatedContainer(
               duration: const Duration(seconds: 3),
+              onEnd: () {
+                switch (statePage) {
+                  case SplashState.loggedADM:
+                    Navigator.of(context)
+                        .pushNamedAndRemoveUntil('/home/adm', (route) => false);
+                  case SplashState.loggedEmployee:
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/home/employee', (route) => false);
+                  case _:
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/home/login', (route) => false);
+                }
+              },
               width: _logoAnimationWidth,
               height: _logoAnimationHeight,
               curve: Curves.linearToEaseOut,
