@@ -1,10 +1,12 @@
 import 'package:dw_barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:dw_barbershop/src/core/ui/constants.dart';
+import 'package:dw_barbershop/src/model/user_model.dart';
 import 'package:flutter/material.dart';
 
 class HomeEmployeeTile extends StatelessWidget {
   final bool imageNetwork = false;
-  const HomeEmployeeTile({super.key});
+  final UserModel employee;
+  const HomeEmployeeTile({super.key, required this.employee});
 
   @override
   Widget build(BuildContext context) {

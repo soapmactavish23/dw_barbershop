@@ -1,14 +1,20 @@
+import 'package:dw_barbershop/src/core/providers/application_providers.dart';
 import 'package:dw_barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:dw_barbershop/src/core/ui/constants.dart';
+import 'package:dw_barbershop/src/core/ui/widgets/barbershop_loader.dart';
+import 'package:dw_barbershop/src/features/home/adm/home_adm_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeHeader extends StatelessWidget {
+class HomeHeader extends ConsumerWidget {
   final bool hideFilter;
 
   const HomeHeader({super.key, this.hideFilter = false});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final barbershop = ref.watch(getMyBarbershopProvider);
+
     return Container(
       width: MediaQuery.sizeOf(context).width,
       padding: const EdgeInsets.all(24),
@@ -28,48 +34,59 @@ class HomeHeader extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(right: 16),
-                child: CircleAvatar(
-                  backgroundColor: Color(0xffbdbdbd),
-                  child: SizedBox.shrink(),
-                ),
-              ),
-              const Flexible(
-                child: Text(
-                  'Ana Claudia Oliveira Nogueira Nogueira',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+          barbershop.maybeWhen(
+            data: (barbershopData) {
+              return Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(right: 16),
+                    child: CircleAvatar(
+                      backgroundColor: Color(0xffbdbdbd),
+                      child: SizedBox.shrink(),
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              const Expanded(
-                child: Text(
-                  'editar',
-                  style: TextStyle(
-                    color: ColorsConstants.brown,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
+                  Flexible(
+                    child: Text(
+                      barbershopData.name,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  BarbershopIcons.exit,
-                  color: ColorsConstants.brown,
-                  size: 32,
-                ),
-              )
-            ],
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const Expanded(
+                    child: Text(
+                      'editar',
+                      style: TextStyle(
+                        color: ColorsConstants.brown,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      ref.read(homeAdmVmProvider.notifier).logout();
+                    },
+                    icon: const Icon(
+                      BarbershopIcons.exit,
+                      color: ColorsConstants.brown,
+                      size: 32,
+                    ),
+                  )
+                ],
+              );
+            },
+            orElse: () {
+              return const Center(
+                child: BarbershopLoader(),
+              );
+            },
           ),
           const SizedBox(
             height: 24,
