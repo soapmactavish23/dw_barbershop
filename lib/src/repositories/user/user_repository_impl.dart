@@ -92,10 +92,15 @@ class UserRepositoryImpl implements UserRepository {
       int barbershopId) async {
     String msg = 'Erro ao buscar colaboradores';
     try {
-      final Response(:List data) = await restClient.auth
-          .get('/users', queryParameters: {'barbershopId': barbershopId});
+      final Response(:List data) = await restClient.auth.get(
+        '/users',
+        queryParameters: {
+          'barbershopId': barbershopId,
+        },
+      );
 
       final employees = data.map((e) => UserModelEmployee.fromMap(e)).toList();
+
       return Success(employees);
     } on DioException catch (e, s) {
       log(msg, error: e, stackTrace: s);

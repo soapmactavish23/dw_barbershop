@@ -28,9 +28,9 @@ class HomeEmployeeTile extends StatelessWidget {
           margin: const EdgeInsets.only(right: 12),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: switch (imageNetwork) {
-                true => const NetworkImage('url'),
-                false => const AssetImage(ImageConstants.avatar)
+              image: switch (employee.avatar) {
+                final avatar? => NetworkImage(avatar),
+                _ => const AssetImage(ImageConstants.avatar)
               } as ImageProvider,
             ),
           ),
@@ -40,9 +40,9 @@ class HomeEmployeeTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'Nome e sobrenome',
-                style: TextStyle(
+              Text(
+                employee.name,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),

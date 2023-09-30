@@ -12,8 +12,10 @@ class HomeAdmVm extends _$HomeAdmVm {
   @override
   Future<HomeAdmState> build() async {
     final repository = ref.read(userRepositoryProvider);
-    final BarbershopModel(id: barbershopId) =
-        await ref.read(getMyBarbershopProvider.future);
+
+    final BarbershopModel(id: barbershopId) = await ref.read(
+      getMyBarbershopProvider.future,
+    );
 
     final employeesResult = await repository.getEmployees(barbershopId);
 

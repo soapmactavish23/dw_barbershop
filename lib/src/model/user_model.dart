@@ -47,7 +47,7 @@ class UserModelADM extends UserModel {
           email: email,
           avatar: json['avatar'],
           workDays: json['work_days']?.cast<String>(),
-          workHours: json['work_hours']?.cast<String>(),
+          workHours: json['work_hours']?.cast<int>(),
         ),
       _ => throw ArgumentError('Invalid Json')
     };
@@ -75,7 +75,7 @@ class UserModelEmployee extends UserModel {
         'id': final int id,
         'name': final String name,
         'email': final String email,
-        'barbershop_id': final int barbershopId,
+        'barbershopId': final int barbershopId,
         'work_days': final List workDays,
         'work_hours': final List workHours,
       } =>
