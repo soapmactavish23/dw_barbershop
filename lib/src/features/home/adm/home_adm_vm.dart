@@ -3,6 +3,7 @@ import 'package:dw_barbershop/src/core/fp/either.dart';
 import 'package:dw_barbershop/src/core/providers/application_providers.dart';
 import 'package:dw_barbershop/src/features/home/adm/home_adm_state.dart';
 import 'package:dw_barbershop/src/model/barbershop_model.dart';
+import 'package:dw_barbershop/src/model/user_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_adm_vm.g.dart';
@@ -17,10 +18,20 @@ class HomeAdmVm extends _$HomeAdmVm {
       getMyBarbershopProvider.future,
     );
 
+    final me = await ref.watch(getMeProvider.future);
+
     final employeesResult = await repository.getEmployees(barbershopId);
 
     switch (employeesResult) {
-      case Success(value: final employees):
+      case Success(value: final employeesData):
+        final employees = <UserModel>[];
+
+        employees.addAll(employeesData);
+
+        if (me case UserModelADM(workDays: _?, workHours: _?)) {
+          employees.add(me);
+        }
+
         return HomeAdmState(
           status: HomeAdmStateStatus.loaded,
           employees: employees,
