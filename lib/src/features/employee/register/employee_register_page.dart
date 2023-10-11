@@ -177,8 +177,6 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                           minimumSize: const Size.fromHeight(56),
                         ),
                         onPressed: () {
-                          print(registerAdm);
-                          print(formKey.currentState?.validate());
                           switch (formKey.currentState?.validate()) {
                             case false || null:
                               Messages.showError(
