@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:dw_barbershop/src/core/ui/constants.dart';
 import 'package:dw_barbershop/src/core/ui/helper/messages.dart';
 import 'package:flutter/material.dart';
