@@ -31,7 +31,7 @@ class BarbershopRepositoryImpl implements BarbershopRepository {
         return Success(BarbershopModel.fromMap(data));
       case UserModelEmployee():
         final Response(:data) = await restClient.auth.get(
-          'barbershop/${userModel.barbershopId}',
+          '/barbershop/${userModel.barbershopId}',
         );
         return Success(
           BarbershopModel.fromMap(data),
