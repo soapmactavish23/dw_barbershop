@@ -2,6 +2,7 @@ import 'package:dw_barbershop/src/core/providers/application_providers.dart';
 import 'package:dw_barbershop/src/core/ui/constants.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/avatar_widget.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/barbershop_loader.dart';
+import 'package:dw_barbershop/src/features/home/employee/home_employee_provider.dart';
 import 'package:dw_barbershop/src/features/home/widgets/home_header.dart';
 import 'package:dw_barbershop/src/model/user_model.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class HomeEmployeePage extends ConsumerWidget {
         },
         loading: () => const BarbershopLoader(),
         data: (user) {
-          final UserModel(:name) = user;
+          final UserModel(:id, :name) = user;
           return CustomScrollView(slivers: [
             const SliverToBoxAdapter(
               child: HomeHeader(
@@ -59,18 +60,32 @@ class HomeEmployeePage extends ConsumerWidget {
                         border: Border.all(color: ColorsConstants.grey),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            '5',
-                            style: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.w600,
-                              color: ColorsConstants.brown,
-                            ),
-                          ),
-                          Text(
+                          Consumer(builder: (_, ref, child) {
+                            final totalAsync =
+                                ref.watch(getTotalSchedulesTodayProvider(id));
+
+                            return totalAsync.when(
+                              error: (error, stackTrace) {
+                                return const Center(
+                                  child: Text('Erro ao carregar página'),
+                                );
+                              },
+                              loading: () => const BarbershopLoader(),
+                              skipLoadingOnRefresh: false,
+                              data: (totalSchedule) => Text(
+                                '$totalSchedule',
+                                style: const TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.w600,
+                                  color: ColorsConstants.brown,
+                                ),
+                              ),
+                            );
+                          }),
+                          const Text(
                             'Hoje',
                             style: TextStyle(
                               fontSize: 14,
@@ -87,9 +102,12 @@ class HomeEmployeePage extends ConsumerWidget {
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(56),
                       ),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed('/schedule', arguments: user);
+                      onPressed: () async {
+                        await Navigator.of(context).pushNamed(
+                          '/schedule',
+                          arguments: user,
+                        );
+                        ref.invalidate(getTotalSchedulesTodayProvider);
                       },
                       child: const Text('AGENDAR CLIENTE'),
                     ),
