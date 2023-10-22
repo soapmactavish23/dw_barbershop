@@ -1,16 +1,59 @@
-# dw_barbershop
+<h1 align="center">
+   <img src="assets/images/2x/imgLogo.png" width="200">
+</h1>
 
-A new Flutter project.
+<h4 align="center"> 
+	🚧 DW BARBERSHOP 🚀 Concluido...  🚧
+</h4>
 
-## Getting Started
+## ✅ Funções
 
-This project is a starting point for a Flutter application.
+- <h3>GERENCIAMENTO DE COLABORADORES</h3>
 
-A few resources to get you started if this is your first Flutter project:
+  - [x] Listagem de Colaboradores
+  - [x] Cadastro de Colaborador
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- <h3>GERENCIAMENTO DE AGENDAMENTOS</h3>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  - [x] Cadastro de Agendamentos
+  - [x] Listagem de Agendamentos
+
+- <h3>Login</h3>
+
+  - [x] Login
+  - [x] Cadastro
+
+## 📚 Descrição
+
+- Aplicativo para gestão de uma barbearia criado na imersão DartWeek.
+
+## 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" height="20" width="20"/> [Flutter](https://flutter.dev/?gclid=Cj0KCQjwkbuKBhDRARIsAALysV4sMSKWcOxrlBmdtlCcf3MAfNdH1ehbbWi6ZjjjdypPLsSvdTFiqOYaAon3EALw_wcB&gclsrc=aw.ds)
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" height="20" width="20"/> [Dart](https://dart.dev/)
+
+## 📱 Plataforma adotada
+
+- Android;
+- iOS;
+
+## 📸 Screenshot
+
+<p float="left">
+	<img src="printscreen/login.png" width="200">
+	<img src="printscreen/cadastro.png" width="200">
+	<img src="printscreen/home.png" width="200">
+</p>
+
+<p float="left">
+	<img src="printscreen/cadastro-colaborador.png" width="200">
+	<img src="printscreen/agendar-cliente1.png" width="200">
+	<img src="printscreen/agendar-cliente2.png" width="200">
+</p>
+
+<p float="left">
+	<img src="printscreen/agenda.png" width="200">
+	<img src="printscreen/home_employee.png" width="200">
+</p>
